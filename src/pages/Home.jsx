@@ -18,12 +18,12 @@ function Home() {
 
   const handleSelectOption = (option) => {
     setSelectedValue(option);
-    setIsOpen(false); // Close the dropdown after selecting an option
+    setIsOpen(false);
   };
 
   const openai = new OpenAIApi(
     new Configuration({
-      apiKey: "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",
+      apiKey: process.env.REACT_APP_API_KEY,
     })
   );
 
@@ -39,7 +39,7 @@ function Home() {
           {
             role: "user",
             content:
-              `Given the detail about the 2 ${selectedValue} policy, come up with multiple criteria of evaluation based on it(atleast 15) and rate them out of 10. Later also generate a final score, which is average of all for each policy. Also compare both of them based on those criteria and tell which one is better. Mention some suggestions what and where to change so as to increase the rating. Generate response in a structured order which is easily readable.`,
+              `Given the detail about the 2 ${selectedValue} policy, come up with multiple criteria of evaluation based on it(atleast 15) and rate them out of 10. Later also generate a final score, which is average of all for each policy. Also compare both of them based on those criteria and tell which one is better. Mention some suggestions what and where to change so as to increase the rating. Also can you please suggest some alternate pathways for the same.  Generate response in a structured order which is easily readable.`,
           },
         ],
       })
